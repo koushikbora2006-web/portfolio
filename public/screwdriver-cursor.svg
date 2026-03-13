@@ -1,0 +1,12 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Screwdriver handle -->
+  <path d="M4 28C2.5 28 1 26.5 1 25C1 23 4 20 6 18L10 22C12 24 9 28 7 28H4Z" fill="#eab308" stroke="#1e293b" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Handle grips -->
+  <line x1="4.5" y1="23.5" x2="8.5" y2="19.5" stroke="#ca8a04" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="6.5" y1="25.5" x2="10.5" y2="21.5" stroke="#ca8a04" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Metal shaft -->
+  <path d="M8 20L22 6" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+  <!-- Screwdriver tip (flathead) -->
+  <path d="M21 7L24 4C25 3 26 2 27 2C28 2 29 3 29 4C29 5 28 6 27 7L24 10" fill="#cbd5e1" stroke="#475569" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M26 3L28 5" stroke="#475569" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

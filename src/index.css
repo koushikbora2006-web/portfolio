@@ -1,0 +1,130 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@theme {
+  --color-primary-glow: rgba(14, 165, 233, 0.4);
+  --color-secondary-glow: rgba(168, 85, 247, 0.4);
+  --shadow-glow: 0 0 20px var(--color-primary-glow);
+  --shadow-glow-lg: 0 0 40px var(--color-primary-glow);
+}
+
+@layer base {
+  body {
+    @apply bg-light-bg text-light-text transition-colors duration-300 antialiased;
+    font-family: "Inter", sans-serif;
+    cursor:
+      url("/thunder-cursor.svg") 12 2,
+      auto;
+  }
+
+  body.dark {
+    @apply bg-dark-bg text-dark-text;
+  }
+
+  /* Make sure clickable elements still use pointer, or we can use the thunder here as well */
+  a,
+  button,
+  [role="button"] {
+    cursor:
+      url("/thunder-cursor.svg") 12 2,
+      pointer !important;
+  }
+}
+
+@layer components {
+  /* Common glassmorphism effect */
+  .glass-header {
+    @apply bg-white/70 backdrop-blur-md border-b border-white/10 dark:bg-slate-900/40 dark:border-white/5 shadow-2xl;
+  }
+
+  .glass-card {
+    @apply bg-white/80 dark:bg-slate-900/40 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-2xl rounded-2xl transition-all duration-500;
+  }
+
+  .glow-border {
+    @apply relative overflow-hidden;
+  }
+
+  .glow-border::before {
+    content: "";
+    @apply absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-primary/30 to-secondary/30 opacity-0 transition-opacity duration-500;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+
+  .glow-border:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-medium rounded-full shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-105 active:scale-95 transition-all duration-300;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 border-2 border-primary text-primary dark:text-white dark:border-white/50 font-medium rounded-full hover:bg-primary/10 dark:hover:bg-white/10 hover:scale-105 active:scale-95 transition-all duration-300;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pb-24;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-6xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-secondary inline-block drop-shadow-[0_0_15px_rgba(14,165,233,0.3)];
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl text-light-muted dark:text-dark-muted max-w-2xl mt-4 mb-16 font-medium leading-relaxed;
+  }
+}
+
+/* Custom Scrollbar for modern look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/50 rounded-full hover:bg-primary;
+}
+
+/* Smooth scrolling applied via JS mostly, but fallback here */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Grid & Light-Ray Keyframes ──────────────────────────────────────────── */
+
+@keyframes gridShimmer {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 -80px; }
+}
+
+@keyframes rayPulse {
+  0%   { opacity: 0.4; transform: rotate(var(--ray-angle, -15deg)) scaleY(0.9); }
+  100% { opacity: 1;   transform: rotate(var(--ray-angle, -15deg)) scaleY(1.1); }
+}
+
+@keyframes shimmerLine {
+  0%   { opacity: 0.3; transform: scaleX(0.6) translateX(-10%); }
+  100% { opacity: 1;   transform: scaleX(1.0) translateX(0%);   }
+}
+
+/* ─── Floating shimmer particles on cards ─────────────────────────────────── */
+@keyframes shimmerFloat {
+  0%   { transform: translateY(0)   rotate(0deg);   opacity: 0; }
+  20%  { opacity: 0.7; }
+  80%  { opacity: 0.4; }
+  100% { transform: translateY(-60px) rotate(30deg); opacity: 0; }
+}
+
+.shimmer-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(14,165,233,0.8);
+  animation: shimmerFloat 3s ease-in infinite;
+  pointer-events: none;
+}

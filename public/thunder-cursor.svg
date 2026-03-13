@@ -1,0 +1,6 @@
+<svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Glowing background / shadow for better visibility -->
+  <path d="M12 2L6 18H14L10 32L26 14H18L22 2H12Z" fill="#ffedd5" opacity="0.6" stroke="#ca8a04" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Core lightning bolt -->
+  <path d="M12 2L6 18H14L10 32L26 14H18L22 2H12Z" fill="#eab308" stroke="#fef08a" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>
