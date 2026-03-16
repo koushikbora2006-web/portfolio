@@ -32,6 +32,7 @@
 }
 
 @layer components {
+
   /* Common glassmorphism effect */
   .glass-header {
     @apply bg-white/70 backdrop-blur-md border-b border-white/10 dark:bg-slate-900/40 dark:border-white/5 shadow-2xl;
@@ -70,7 +71,7 @@
   }
 
   .section-title {
-    @apply text-4xl md:text-6xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-secondary inline-block drop-shadow-[0_0_15px_rgba(14,165,233,0.3)];
+    @apply text-4xl md:text-6xl font-black mb-6 pb-3 bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-secondary inline-block drop-shadow-[0_0_15px_rgba(14,165,233,0.3)];
   }
 
   .section-subtitle {
@@ -82,9 +83,11 @@
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   @apply bg-transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   @apply bg-primary/50 rounded-full hover:bg-primary;
 }
@@ -97,26 +100,58 @@ html {
 /* ─── Grid & Light-Ray Keyframes ──────────────────────────────────────────── */
 
 @keyframes gridShimmer {
-  0%   { background-position: 0 0; }
-  100% { background-position: 0 -80px; }
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 0 -80px;
+  }
 }
 
 @keyframes rayPulse {
-  0%   { opacity: 0.4; transform: rotate(var(--ray-angle, -15deg)) scaleY(0.9); }
-  100% { opacity: 1;   transform: rotate(var(--ray-angle, -15deg)) scaleY(1.1); }
+  0% {
+    opacity: 0.4;
+    transform: rotate(var(--ray-angle, -15deg)) scaleY(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(var(--ray-angle, -15deg)) scaleY(1.1);
+  }
 }
 
 @keyframes shimmerLine {
-  0%   { opacity: 0.3; transform: scaleX(0.6) translateX(-10%); }
-  100% { opacity: 1;   transform: scaleX(1.0) translateX(0%);   }
+  0% {
+    opacity: 0.3;
+    transform: scaleX(0.6) translateX(-10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleX(1.0) translateX(0%);
+  }
 }
 
 /* ─── Floating shimmer particles on cards ─────────────────────────────────── */
 @keyframes shimmerFloat {
-  0%   { transform: translateY(0)   rotate(0deg);   opacity: 0; }
-  20%  { opacity: 0.7; }
-  80%  { opacity: 0.4; }
-  100% { transform: translateY(-60px) rotate(30deg); opacity: 0; }
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.7;
+  }
+
+  80% {
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: translateY(-60px) rotate(30deg);
+    opacity: 0;
+  }
 }
 
 .shimmer-particle {
@@ -124,7 +159,7 @@ html {
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(14,165,233,0.8);
+  background: rgba(14, 165, 233, 0.8);
   animation: shimmerFloat 3s ease-in infinite;
   pointer-events: none;
 }

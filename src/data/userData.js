@@ -71,6 +71,14 @@ export const userData = {
       tech: ["Python", "Machine Learning", "Data Science", "Scikit-Learn"],
       githubUrl: "https://github.com/koushikbora2006-web",
       liveUrl: "#"
+    },
+    {
+      title: "Football Chatbot AI",
+      description: "An intelligent chatbot tailored for football fans, providing real-time stats, match updates, and player information using NLP.",
+      image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=800&auto=format&fit=crop",
+      tech: ["Artificial Intelligence", "NLP", "Python", "React"],
+      githubUrl: "https://github.com/koushikbora2006-web/football-ai.git",
+      liveUrl: "#" // Replace with your actual live demo URL if different
     }
   ]
 };

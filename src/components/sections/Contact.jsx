@@ -4,6 +4,7 @@ import { userData } from "../../data/userData";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import {
   FaMapMarkerAlt,
   FaEnvelope,
@@ -11,6 +12,9 @@ import {
   FaPaperPlane,
 } from "react-icons/fa";
 import Tilt from "react-parallax-tilt";
+
+const CONTACT_LOTTIE = "https://lottie.host/87fb1d42-a8e9-40ab-b378-163f48067282/k0yI9DXNgC.lottie";
+
 
 // ── EmailJS configuration ─────────────────────────────────────────────────────
 // Get your free keys at https://www.emailjs.com → Account → API Keys
@@ -102,13 +106,39 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="lg:col-span-5 space-y-6"
         >
-          <div className="mb-8">
+          <div className="mb-2">
+            {/* Lottie animation — smooth entrance, floats gently */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="flex justify-center mb-6"
+            >
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
+                className="w-72 h-72 md:w-80 md:h-80 rounded-3xl overflow-hidden relative"
+                style={{
+                  background: "radial-gradient(ellipse at center, rgba(10,18,50,0.95) 0%, rgba(3,8,28,0.98) 100%)",
+                  boxShadow: "0 0 40px rgba(14,165,233,0.15), inset 0 0 60px rgba(14,165,233,0.05)",
+                  border: "1px solid rgba(14,165,233,0.12)",
+                }}
+              >
+                {/* Subtle glow overlay to blend edges */}
+                <div className="absolute inset-0 rounded-3xl pointer-events-none"
+                  style={{ background: "radial-gradient(ellipse at center, transparent 60%, rgba(3,8,28,0.6) 100%)" }}
+                />
+                <DotLottieReact src={CONTACT_LOTTIE} loop autoplay />
+              </motion.div>
+            </motion.div>
+
             <h3 className="text-3xl font-black mb-4 dark:text-white bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-              Let's Connect
+              Let&apos;s Connect
             </h3>
             <p className="text-light-muted dark:text-slate-300 text-lg leading-relaxed">
-              I'm currently looking for new opportunities. Whether you have a
-              question or just want to say hi, I'll try my best to get back to
+              I&apos;m currently looking for new opportunities. Whether you have a
+              question or just want to say hi, I&apos;ll try my best to get back to
               you!
             </p>
           </div>

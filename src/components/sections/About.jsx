@@ -5,6 +5,8 @@ import { FaUserGraduate, FaLaptopCode, FaBrain, FaTimes } from "react-icons/fa";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 
+import ModelBoy from "../ModelBoy";
+
 export default function About() {
   const [showDetails, setShowDetails] = useState(false);
 
@@ -53,21 +55,11 @@ export default function About() {
               onClick={() => setShowDetails(true)}
             >
               <div className="relative w-[280px] h-[400px] md:w-[350px] md:h-[500px] group transition-transform duration-700 hover:-translate-y-4">
-                {/* Image container without glowing ring/borders, with fade mask */}
+                {/* 3D Model placeholder using the original image */}
                 <div
-                  className="relative w-full h-full overflow-hidden bg-transparent z-10"
-                  style={{
-                    maskImage:
-                      "linear-gradient(to bottom, black 70%, transparent 100%)",
-                    WebkitMaskImage:
-                      "linear-gradient(to bottom, black 70%, transparent 100%)",
-                  }}
+                  className="relative w-full h-full z-10"
                 >
-                  <img
-                    src="/avatar.jpg"
-                    alt="Animated Boy"
-                    className="w-full h-full object-cover object-top relative z-10 transition-transform duration-700 group-hover:scale-110"
-                  />
+                  <ModelBoy />
                   {/* Overlay prompt when not clicked */}
                   {!showDetails && (
                     <div className="absolute inset-x-0 bottom-0 top-[60%] bg-gradient-to-t from-black/80 to-transparent z-20 flex flex-col items-center justify-end pb-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">

@@ -5,6 +5,10 @@ import { userData } from "../../data/userData";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FaGraduationCap, FaStar } from "react-icons/fa";
 import Tilt from "react-parallax-tilt";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+
+const EDUCATION_LOTTIE = "https://lottie.host/bab2215a-f76d-4667-8625-19d711e86b6f/RnitQ15MUf.lottie";
+
 
 const TimelineItem = ({ edu, index }) => {
   const isEven = index % 2 === 0;
@@ -26,9 +30,26 @@ const TimelineItem = ({ edu, index }) => {
         )}
       </motion.div>
 
-      {/* Content wrapper taking half width */}
+      {/* ── Lottie Animation — opposite side of the card ─────────────── */}
+      <motion.div
+        initial={{ opacity: 0, x: isEven ? 40 : -40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+        className={`absolute w-[calc(50%-3rem)] flex ${
+          isEven ? "justify-start pl-12 left-1/2" : "justify-end pr-12 right-1/2"
+        }`}
+      >
+        <div className="w-36 h-36 xl:w-44 xl:h-44 drop-shadow-[0_0_18px_rgba(14,165,233,0.35)]">
+          <DotLottieReact src={EDUCATION_LOTTIE} loop autoplay />
+        </div>
+      </motion.div>
+
+      {/* Content card — left side for even, right side for odd */}
       <div
-        className={`w-[calc(50%-3rem)] flex ${isEven ? "justify-end pr-8 ml-auto mr-[50%]" : "justify-start pl-8 mr-auto ml-[50%]"}`}
+        className={`w-[calc(50%-3rem)] flex ${
+          isEven ? "justify-end pr-8 ml-auto mr-[50%]" : "justify-start pl-8 mr-auto ml-[50%]"
+        }`}
       >
         <motion.div
           initial={{ opacity: 0, x: isEven ? -50 : 50 }}
@@ -50,12 +71,12 @@ const TimelineItem = ({ edu, index }) => {
 
               {/* Decorative timeline connector line */}
               <div
-                className={`absolute top-1/2 -translate-y-1/2 w-8 h-[2px] bg-primary/30 ${isEven ? "-right-8" : "-left-8"} z-0`}
+                className={`absolute top-1/2 -translate-y-1/2 w-8 h-[2px] bg-primary/30 ${
+                  isEven ? "-right-8" : "-left-8"
+                } z-0`}
               ></div>
 
-              <div
-                className={`flex flex-col ${isEven ? "md:items-end text-left md:text-right" : "md:items-start text-left"}`}
-              >
+              <div className={`flex flex-col ${isEven ? "md:items-end text-left md:text-right" : "md:items-start text-left"}`}>
                 <span className="inline-block px-4 py-1.5 mb-4 text-sm font-bold tracking-wider rounded-md bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm">
                   {edu.duration}
                 </span>
@@ -77,6 +98,7 @@ const TimelineItem = ({ edu, index }) => {
   );
 };
 
+
 // Mobile specific item to handle small screens elegantly
 const MobileTimelineItem = ({ edu, index }) => (
   <motion.div
@@ -95,12 +117,12 @@ const MobileTimelineItem = ({ edu, index }) => (
       )}
     </div>
 
-    <Tilt
-      tiltMaxAngleX={5}
-      tiltMaxAngleY={5}
-      scale={1.01}
-      transitionSpeed={1500}
-    >
+    {/* Lottie alongside card on mobile (top-right corner) */}
+    <div className="absolute top-0 right-0 w-20 h-20 opacity-80">
+      <DotLottieReact src={EDUCATION_LOTTIE} loop autoplay />
+    </div>
+
+    <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.01} transitionSpeed={1500}>
       <div className="glass-card p-5 relative border-l-2 border-primary/30 hover:border-primary group hover:shadow-[0_0_20px_rgba(14,165,233,0.2)] transition-all">
         <span className="inline-block px-3 py-1 mb-3 text-xs font-bold tracking-wider rounded border border-primary/20 bg-primary/10 text-primary">
           {edu.duration}
