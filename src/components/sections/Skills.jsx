@@ -92,15 +92,8 @@ const CARDS = [
 
 // ── Skill Card (collapsed — click to open) ──────────────────────────────────
 function SkillCard({ card, onOpen }) {
-  const [playing, setPlaying] = useState(false);
-
   const handleClick = useCallback(() => {
-    setPlaying(true);
-    // After animation plays for ~1.6 s, open the modal
-    setTimeout(() => {
-      setPlaying(false);
-      onOpen(card.key);
-    }, 1500);
+    onOpen(card.key);
   }, [card.key, onOpen]);
 
   return (
@@ -108,7 +101,7 @@ function SkillCard({ card, onOpen }) {
       <motion.div
         variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, type: "spring" } } }}
         className={`glass-card glow-border p-6 h-full flex flex-col items-center border-t-2 ${card.border} ${card.hoverBorder} ${card.shadow} transition-all duration-500 overflow-hidden relative cursor-pointer select-none`}
-        onClick={!playing ? handleClick : undefined}
+        onClick={handleClick}
       >
         {/* Background blob */}
         <div className={`absolute -top-10 -right-10 w-32 h-32 ${card.blob} blur-3xl rounded-full`}></div>
@@ -120,23 +113,14 @@ function SkillCard({ card, onOpen }) {
 
         <h3 className="text-2xl font-black mb-4 tracking-wide dark:text-white z-10 text-center">{card.title}</h3>
 
-        {/* Lottie burst while loading */}
-        {playing ? (
-          <div className="w-48 h-48 z-20">
-            <DotLottieReact src={SKILL_LOTTIE} autoplay loop />
-          </div>
-        ) : (
-          <>
-            <p className="text-slate-400 text-sm text-center z-10 mb-4">Click to explore skills →</p>
-            <motion.span
-              animate={{ y: [0, -6, 0] }}
-              transition={{ repeat: Infinity, duration: 1.8 }}
-              className={`text-3xl z-10 ${card.colorClass} drop-shadow-[0_0_10px_currentColor]`}
-            >
-              ✦
-            </motion.span>
-          </>
-        )}
+        <p className="text-slate-400 text-sm text-center z-10 mb-4">Click to explore skills →</p>
+        <motion.span
+          animate={{ y: [0, -6, 0] }}
+          transition={{ repeat: Infinity, duration: 1.8 }}
+          className={`text-3xl z-10 ${card.colorClass} drop-shadow-[0_0_10px_currentColor]`}
+        >
+          ✦
+        </motion.span>
       </motion.div>
     </Tilt>
   );
